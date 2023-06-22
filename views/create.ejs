@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建账单</title>
+    <style>
+        .formLayout {
+            display: block;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .formItem {
+            display: block;
+            margin: 6px 4px;
+        }
+
+        .formSubmit {
+            display: block;
+            width: 100px;
+            background-color: antiquewhite;
+            color: black;
+            border-radius: 5px;
+            padding: 10px 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>创建账单</h2>
+    <hr>
+
+    <form class="formLayout" id="accountForm" action="/account/create" enctype="multipart/form-data" method="post">
+        <label class="formItem" for="accountType">事项:
+        </label>
+        <input type="text" id="accountType" name="accountType" />
+        <label class="formItem" for="billTime">时间:
+        </label>
+        <input type="datetime" id="billTime" name="billTime">
+        <label class="formItem" for="billType">类型:
+
+        </label>
+        <select name="billType" id="billType">
+            <option value="-1">支出</option>
+            <option value="1">收入</option>
+        </select>
+        <label class="formItem" for="acount">金额:
+        </label>
+        <input type="text" id="account" name="acount">
+
+        <label class="formItem" for="remark">备注:
+        </label>
+        <textarea name="remark" id="remark" cols="30" rows="10"></textarea>
+
+        <hr>
+        <button class="formSubmit" type="submit">添加</button>
+    </form>
+</body>
+
+</html>

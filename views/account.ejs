@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账单列表</title>
+    <style>
+        .accountLayout {
+            display: block;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .listItem {
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 8px 4px;
+        }
+
+        .date {
+            display: block;
+            background-color: plum;
+            color: black;
+            padding: 8px 10px;
+        }
+
+        .accountInfo {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 8px 10px;
+        }
+
+        .remark {
+            flex: 2;
+            text-align: left;
+        }
+
+        .type {
+            width: 50px;
+            border-radius: 5px;
+            color: aliceblue;
+        }
+
+        .inType {
+            background-color: tan;
+        }
+
+        .outType {
+            background-color: rgb(16, 238, 68);
+        }
+
+        .count {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>帐单列表</h2>
+    <hr>
+    <ul class="accountLayout">
+        <li class="listItem">
+            <div class="date">2023-04-05</div>
+            <div class="accountInfo">
+                <div class="remark">3月份工资</div>
+                <div class="type outType">收入</div>
+                <div class="count">8900元</div>
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>
