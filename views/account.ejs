@@ -44,16 +44,46 @@
             color: aliceblue;
         }
 
-        .inType {
+        .outType {
             background-color: tan;
         }
 
-        .outType {
+        .inType {
             background-color: rgb(16, 238, 68);
         }
 
         .count {
             flex: 1;
+        }
+
+        .delBtn {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: red;
+            color: aliceblue;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .delBtn:hover {
+            opacity: 1
+        }
+
+        .create {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            background-color: chocolate;
+            color: black;
+            border-radius: 5px;
+            text-align: center;
+            padding: 2px 8px;
+            line-height: 40px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -61,16 +91,43 @@
 <body>
     <h2>帐单列表</h2>
     <hr>
+    <a class="create" href="/account/create">创建账单</a>
     <ul class="accountLayout">
-        <li class="listItem">
-            <div class="date">2023-04-05</div>
-            <div class="accountInfo">
-                <div class="remark">3月份工资</div>
-                <div class="type outType">收入</div>
-                <div class="count">8900元</div>
-            </div>
-        </li>
+        <% accounts.forEach(item=>{ %>
+            <li class="listItem">
+                <div class="date">
+                    <%= dayjs(item.billTime).format('YYYY-MM-DD') %>
+                </div>
+                <div class="accountInfo">
+                    <div class="remark">
+                        <%= item.accountType %>
+                    </div>
+                    <% if(item.billType===-1) {%>
+                        <div class="type outType">支出</div>
+                        <% } else { %>
+                            <div class="type inType">收入</div>
+                            <% } %>
+
+                                <div class="count">
+                                    <%= item.account %>元
+                                </div>
+                                <a class="delBtn" href="/account/<%= item._id %>">X</a>
+                </div>
+            </li>
+            <% }) %>
     </ul>
+    <script>
+        let btns = document.querySelectorAll('.delBtn')
+        btns.forEach(item => {
+            item.addEventListener('click', function (e) {
+                if (confirm('确定删除吗?')) {
+                    return true
+                } else {
+                    e.preventDefault()
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,22 @@
+{
+  "accounts": [
+    {
+      "id": "EcbBtgciJ",
+      "accountType": "buyTv",
+      "billTime": "2023-06-18",
+      "billType": "-1",
+      "acount": "5000",
+      "remark": "123"
+    },
+    {
+      "id": "Ib_hFVCYd"
+    },
+    {
+      "id": "rEc27kat8"
+    },
+    {
+      "id": "odfXLr0K_"
+    }
+  ],
+  "user": {}
+}
