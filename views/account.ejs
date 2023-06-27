@@ -91,6 +91,9 @@
 <body>
     <h2>帐单列表</h2>
     <hr>
+    <form action="/logout" method="post" enctype="multipart/form-data">
+        <button>退出</button>
+    </form>
     <a class="create" href="/account/create">创建账单</a>
     <ul class="accountLayout">
         <% accounts.forEach(item=>{ %>

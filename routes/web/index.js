@@ -1,12 +1,17 @@
 var express = require('express');
 const dayjs = require('dayjs')
-const AccountModel = require('../models/AccountModel');
+const AccountModel = require('../../models/AccountModel');
+const checkToken = require('../../middlewares/checkToken');
 var router = express.Router();
 
+
 /* GET home page. */
-router.get('/account', function (req, res) {
+router.get('/', (req, res) => {
+  res.redirect('/account')
+})
+
+router.get('/account', checkToken, function (req, res) {
   AccountModel.find().sort({ billTime: -1 }).then(data => {
-    console.log(data)
     res.render('account', { accounts: data, dayjs })
   }).catch(e => {
     response.status(500)
@@ -14,13 +19,13 @@ router.get('/account', function (req, res) {
   })
 });
 
-router.get('/account/create', (req, res) => {
+router.get('/account/create', checkToken, (req, res) => {
   res.render('create')
 })
 
-router.post('/account/create', (req, response) => {
+router.post('/account/create', checkToken, (req, response) => {
   AccountModel.create({ ...req.fields, billTime: dayjs(req.fields.billTime) }).then(res => {
-    response.render('result')
+    response.render('result', { msg: '创建成功', url: 'account' })
   }).catch(e => {
     response.status(500)
     response.send(`插入失败: ${e}}`)
@@ -28,14 +33,14 @@ router.post('/account/create', (req, response) => {
 })
 
 // 删除记录
-router.get('/account/:id', (req, res) => {
+router.get('/account/:id', checkToken, (req, res) => {
   const id = req.params.id
   console.log(id)
 
   AccountModel.deleteOne({ _id: id }).then(ret => {
-    res.status(200).send('删除成功')
+    res.status(200).render('result', { msg: '删除成功', url: 'account' })
   }).catch(e => {
-    res.status(500).send('删除失败')
+    res.status(500).send(`删除失败: ${e}`)
   })
 })
 
