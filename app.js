@@ -14,6 +14,7 @@ var indexRouter = require('./routes/web/index');
 var usersRouter = require('./routes/users');
 const avatarRouter = require('./routes/avatar')
 const accountRouter = require('./routes/api/account')
+const authApiRouter = require('./routes/api/auth')
 
 const authRouter = require('./routes/web/auth');
 
@@ -55,6 +56,7 @@ app.use('/users', usersRouter);
 app.use('/avatar', avatarRouter);
 
 app.use('/api', accountRouter);
+app.use('/api', authApiRouter)
 app.use(authRouter)
 
 // catch 404 and forward to error handler

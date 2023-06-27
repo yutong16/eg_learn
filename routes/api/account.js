@@ -2,9 +2,10 @@ var express = require('express');
 const dayjs = require('dayjs')
 const AccountModel = require('../../models/AccountModel');
 var router = express.Router();
+const checkToken = require('../../middlewares/checkToken');
 
 /* GET home page. */
-router.get('/account', function (req, res) {
+router.get('/account', checkToken, function (req, res) {
     AccountModel.find().sort({ billTime: -1 }).then(data => {
         res.json({
             code: 0,
@@ -20,7 +21,7 @@ router.get('/account', function (req, res) {
     })
 });
 
-router.post('/account/create', (req, response) => {
+router.post('/account/create', checkToken, (req, response) => {
     AccountModel.create({ ...req.fields, billTime: dayjs(req.fields.billTime) }).then(res => {
         response.json({
             code: 0,
@@ -37,7 +38,7 @@ router.post('/account/create', (req, response) => {
 })
 
 // 删除记录
-router.get('/account/:id', (req, res) => {
+router.get('/account/:id', checkToken, (req, res) => {
     const id = req.params.id
     console.log(id)
 
